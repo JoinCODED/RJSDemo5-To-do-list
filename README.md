@@ -6,14 +6,25 @@
    import axios from "axios";
    ```
 
-2. In render() add call axios. Return Promise:
+2. Create your state
+
+```javascript
+constructor(props) {
+  super(props);
+  this.state = {
+    tasksFromAPI: []
+  };
+}
+```
+
+3. In render() add call axios. Return Promise:
 
 ```javascript
 let asynCall = axios.get("http://127.0.0.1:8000/api/list/");
 console.log("Axios returned: ", asynCall);
 ```
 
-3. Add .then and log the response object THEN log response.data:
+4. Add .then and log the response object THEN log response.data:
 
 ```javascript
 axios
@@ -21,7 +32,7 @@ axios
   .then(response => console.log(response.data));
 ```
 
-4. Add .data
+5. Add .data
 
 ```javascript
 axios
@@ -30,7 +41,7 @@ axios
   .then(data => this.setState({ tasksFromAPI: data }));
 ```
 
-5. Add componentDidMount():
+6. Add componentDidMount():
 
 ```javascript
 componentDidMount() {
