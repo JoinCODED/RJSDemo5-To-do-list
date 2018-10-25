@@ -2,14 +2,13 @@ PRESENTATION: https://docs.google.com/presentation/d/1Kua0l4sS-RWstAyp7YMNYUg49G
 
 1. install axios and import it
 
-   ```bash
-   yarn add axios
-   ```
+```bash
+yarn add axios
+```
 
-````
- ```javascript
- import axios from "axios";
-````
+```javascript
+import axios from "axios";
+```
 
 2. Create and use your state
 
