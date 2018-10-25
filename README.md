@@ -11,7 +11,7 @@ PRESENTATION: https://docs.google.com/presentation/d/1Kua0l4sS-RWstAyp7YMNYUg49G
  import axios from "axios";
 ````
 
-2. Create your state
+2. Create and use your state
 
 ```javascript
 constructor(props) {
@@ -19,6 +19,12 @@ constructor(props) {
   this.state = {
     tasksFromAPI: []
   };
+}
+...
+render() {
+  ...
+  <ToDoList tasks={this.state.tasksFromAPI} />
+  ...
 }
 ```
 
