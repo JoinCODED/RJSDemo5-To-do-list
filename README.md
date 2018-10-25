@@ -35,33 +35,49 @@ let asynCall = axios.get("http://127.0.0.1:8000/api/list/");
 console.log("Axios returned: ", asynCall);
 ```
 
-4. Add `.then` and log the response object THEN log response.data:
+4. Demo `.then` and log the response object THEN log `res.data`:
+
+```javascript
+axios
+  .get("http://127.0.0.1:8000/api/list/")
+  .then(() => alert("SUCCESS"!!!));
+
+// To show that it's async
+console.log("I run first!");
+```
+
+to
+
+```javascript
+axios.get("http://127.0.0.1:8000/api/list/").then(res => console.log(res));
+```
+
+to
 
 ```javascript
 axios.get("http://127.0.0.1:8000/api/list/").then(res => console.log(res.data));
 ```
 
-5. Add .data
+5. Switch off the API to cause an error. Add a `.catch`:
+
+```javascript
+axios
+  .get("http://127.0.0.1:8000/api/list/")
+  .then(res => console.log(res.data))
+  .catch(err => console.error("SOMETHING WENT WRONG: " + err));
+```
+
+6. Add `setState`. Show this breaking the app!
 
 ```javascript
 axios
   .get("http://127.0.0.1:8000/api/list/")
   .then(res => res.data)
-  .then(data => this.setState({ tasksFromAPI: data }));
+  .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }))
+  .catch(err => console.error("SOMETHING WENT WRONG: " + err));
 ```
 
-6. Add `componentDidMount()`:
-
-```javascript
-componentDidMount() {
-  axios
-    .get("http://127.0.0.1:8000/api/list/")
-    .then(res => res.data)
-    .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }));
-}
-```
-
-7. Switch off the API to cause an error. Add a `.catch`:
+7. Add `componentDidMount()`:
 
 ```javascript
 componentDidMount() {
