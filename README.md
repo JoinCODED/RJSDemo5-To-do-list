@@ -64,7 +64,10 @@ axios.get("http://127.0.0.1:8000/api/list/").then(res => console.log(res.data));
 axios
   .get("http://127.0.0.1:8000/api/list/")
   .then(res => console.log(res.data))
-  .catch(err => console.error("SOMETHING WENT WRONG: " + err));
+  .catch(err => {
+    console.error("SOMETHING WENT WRONG: ");
+    console.error(err);
+  });
 ```
 
 6. Add `setState`. Show this breaking the app!
@@ -74,7 +77,10 @@ axios
   .get("http://127.0.0.1:8000/api/list/")
   .then(res => res.data)
   .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }))
-  .catch(err => console.error("SOMETHING WENT WRONG: " + err));
+  .catch(err => {
+    console.error("SOMETHING WENT WRONG: ");
+    console.error(err);
+  });
 ```
 
 7. Add `componentDidMount()`:
@@ -85,6 +91,9 @@ componentDidMount() {
     .get("http://127.0.0.1:8000/api/list/")
     .then(res => res.data)
     .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }))
-    .catch(err => console.error("SOMETHING WENT WRONG: " + err));
+    .catch(err => {
+      console.error("SOMETHING WENT WRONG: ");
+      console.error(err);
+    });
 }
 ```
