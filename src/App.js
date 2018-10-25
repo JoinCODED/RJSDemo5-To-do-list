@@ -18,7 +18,11 @@ class App extends Component {
     axios
       .get("http://127.0.0.1:8000/api/list/")
       .then(response => response.data)
-      .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }));
+      .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }))
+      .catch(err => {
+        console.error("SOMETHING WENT WRONG: ");
+        console.error(err);
+      });
   }
   render() {
     return (
