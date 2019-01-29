@@ -3,18 +3,15 @@ import React, { Component } from "react";
 import "./App.css";
 
 class ToDoItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      done: this.props.task.done
-    };
-  }
+  state = {
+    done: this.props.task.done
+  };
 
   clicked = () => {
     this.setState({ done: !this.state.done });
   };
+
   render() {
-    console.log(this.props.task);
     const task = this.props.task;
     let statusIcon;
 
