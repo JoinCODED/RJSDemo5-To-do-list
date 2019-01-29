@@ -47,7 +47,8 @@ to
 ```javascript
 async render() {
   ...
-  const data = await axios.get("http://127.0.0.1:8000/api/list/").data
+  const response = await axios.get("http://127.0.0.1:8000/api/list/")
+  const data = response.data
   console.log(data);
   ...
 }
@@ -58,7 +59,8 @@ to
 ```javascript
 async render() {
   ...
-  const tasks = await axios.get("http://127.0.0.1:8000/api/list/").data
+  const response = await axios.get("http://127.0.0.1:8000/api/list/");
+  const tasks = response.data;
   console.log(tasks);
   ...
 }
@@ -70,8 +72,9 @@ async render() {
 async render() {
   ...
   try {
-    const tasks = await axios.get("http://127.0.0.1:8000/api/list/").data
-    console.log(tasks);
+    const response = await axios.get("http://127.0.0.1:8000/api/list/");
+    const tasks = response.data;
+    this.setState({ tasksFromAPI: tasks });
   } catch(error) {
     console.error("SOMETHING WENT WRONG!");
     console.error(error);
@@ -86,8 +89,9 @@ async render() {
 async render() {
   ...
   try {
-    const tasks = await axios.get("http://127.0.0.1:8000/api/list/").data
-    this.setState({tasksFromAPI: tasks})
+    const response = await axios.get("http://127.0.0.1:8000/api/list/");
+    const tasks = response.data;
+    this.setState({ tasksFromAPI: tasks });
   } catch(error) {
     console.error("SOMETHING WENT WRONG!");
     console.error(error);
@@ -100,12 +104,13 @@ async render() {
 
 ```javascript
 async componentDidMount() {
-  try {
-    const tasks = await axios.get("http://127.0.0.1:8000/api/list/").data
-    this.setState({tasksFromAPI: tasks})
-  } catch(error) {
-    console.error("SOMETHING WENT WRONG!");
-    console.error(error);
-  }
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/list/");
+      const tasks = response.data;
+      this.setState({ tasksFromAPI: tasks });
+    } catch (err) {
+      console.error("SOMETHING WENT WRONG: ");
+      console.error(err);
+    }
 }
 ```
