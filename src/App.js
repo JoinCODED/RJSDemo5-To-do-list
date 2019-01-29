@@ -8,22 +8,21 @@ import "./App.css";
 import ToDoList from "./ToDoList";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasksFromAPI: []
-    };
+  state = {
+    tasksFromAPI: []
+  };
+
+  async componentDidMount() {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/list/");
+      const tasks = response.data;
+      this.setState({ tasksFromAPI: tasks });
+    } catch (err) {
+      console.error("SOMETHING WENT WRONG: ");
+      console.error(err);
+    }
   }
-  componentDidMount() {
-    axios
-      .get("http://127.0.0.1:8000/api/list/")
-      .then(response => response.data)
-      .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }))
-      .catch(err => {
-        console.error("SOMETHING WENT WRONG: ");
-        console.error(err);
-      });
-  }
+
   render() {
     return (
       <div className="rectangle">
