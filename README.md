@@ -13,11 +13,8 @@ import axios from "axios";
 2. Create and use your state
 
 ```javascript
-constructor(props) {
-  super(props);
-  this.state = {
-    tasksFromAPI: []
-  };
+state = {
+  tasksFromAPI: []
 }
 ...
 render() {
@@ -34,65 +31,81 @@ let asynCall = axios.get("http://127.0.0.1:8000/api/list/");
 console.log("Axios returned: ", asynCall);
 ```
 
-4. Demo `.then` and log the response object THEN log `res.data`:
+4. Demo `async/await` and log the response object THEN log `res.data`:
 
 ```javascript
-axios
-  .get("http://127.0.0.1:8000/api/list/")
-  .then(() => alert("SUCCESS"!!!));
-
-// To show that it's async
-console.log("I run first!");
+async render() {
+  ...
+  const response = await axios.get("http://127.0.0.1:8000/api/list/")
+  console.log(response);
+  ...
+}
 ```
 
 to
 
 ```javascript
-axios.get("http://127.0.0.1:8000/api/list/").then(res => console.log(res));
+async render() {
+  ...
+  const data = await axios.get("http://127.0.0.1:8000/api/list/").data
+  console.log(data);
+  ...
+}
 ```
 
 to
 
 ```javascript
-axios.get("http://127.0.0.1:8000/api/list/").then(res => console.log(res.data));
+async render() {
+  ...
+  const tasks = await axios.get("http://127.0.0.1:8000/api/list/").data
+  console.log(tasks);
+  ...
+}
 ```
 
-5. Switch off the API to cause an error. Add a `.catch`:
+5. Switch off the API to cause an error. Add a `try/catch`:
 
 ```javascript
-axios
-  .get("http://127.0.0.1:8000/api/list/")
-  .then(res => console.log(res.data))
-  .catch(err => {
-    console.error("SOMETHING WENT WRONG: ");
-    console.error(err);
-  });
+async render() {
+  ...
+  try {
+    const tasks = await axios.get("http://127.0.0.1:8000/api/list/").data
+    console.log(tasks);
+  } catch(error) {
+    console.error("SOMETHING WENT WRONG!");
+    console.error(error);
+  }
+  ...
+}
 ```
 
 6. Add `setState`. Show this breaking the app!
 
 ```javascript
-axios
-  .get("http://127.0.0.1:8000/api/list/")
-  .then(res => res.data)
-  .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }))
-  .catch(err => {
-    console.error("SOMETHING WENT WRONG: ");
-    console.error(err);
-  });
+async render() {
+  ...
+  try {
+    const tasks = await axios.get("http://127.0.0.1:8000/api/list/").data
+    this.setState({tasksFromAPI: tasks})
+  } catch(error) {
+    console.error("SOMETHING WENT WRONG!");
+    console.error(error);
+  }
+  ...
+}
 ```
 
 7. Add `componentDidMount()`:
 
 ```javascript
-componentDidMount() {
-  axios
-    .get("http://127.0.0.1:8000/api/list/")
-    .then(res => res.data)
-    .then(tasksFromAPI => this.setState({ tasksFromAPI: tasksFromAPI }))
-    .catch(err => {
-      console.error("SOMETHING WENT WRONG: ");
-      console.error(err);
-    });
+async componentDidMount() {
+  try {
+    const tasks = await axios.get("http://127.0.0.1:8000/api/list/").data
+    this.setState({tasksFromAPI: tasks})
+  } catch(error) {
+    console.error("SOMETHING WENT WRONG!");
+    console.error(error);
+  }
 }
 ```
