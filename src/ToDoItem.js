@@ -7,24 +7,24 @@ class ToDoItem extends Component {
     done: this.props.task.done
   };
 
-  clicked = () => {
+  handleClick = () => {
     this.setState({ done: !this.state.done });
   };
 
   render() {
     const task = this.props.task;
-    let statusIcon;
-
-    if (this.state.done) {
-      statusIcon = "fa fa-check-circle";
-    } else {
-      statusIcon = "fa fa-times-circle";
-    }
+    const statusIcon = done => {
+      if (done) {
+        return "fa fa-check-circle";
+      } else {
+        return "fa fa-times-circle";
+      }
+    };
 
     return (
       <tr className="row">
-        <td onClick={this.clicked}>
-          <i className={statusIcon} />
+        <td onClick={this.handleClick}>
+          <i className={statusIcon(this.state.done)} />
         </td>
         <td>{task.task}</td>
         <td className={task.priority}>{task.priority.toUpperCase()}</td>
