@@ -4,7 +4,7 @@ import axios from "axios";
 import "font-awesome/css/font-awesome.min.css";
 import "./App.css";
 
-//Components
+// Components
 import ToDoList from "./ToDoList";
 
 class App extends Component {
@@ -18,8 +18,7 @@ class App extends Component {
       const tasks = response.data;
       this.setState({ tasksFromAPI: tasks });
     } catch (err) {
-      console.error("SOMETHING WENT WRONG: ");
-      console.error(err);
+      console.error("SOMETHING WENT WRONG: ", err);
     }
   }
 
