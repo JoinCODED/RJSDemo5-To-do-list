@@ -4,7 +4,7 @@ import "./App.css";
 
 class ToDoItem extends Component {
   state = {
-    done: this.props.task.done
+    done: this.props.item.done
   };
 
   handleClick = () => {
@@ -12,7 +12,7 @@ class ToDoItem extends Component {
   };
 
   render() {
-    const task = this.props.task;
+    const item = this.props.item;
     const statusIcon = done => {
       if (done) {
         return "fa fa-check-circle";
@@ -26,8 +26,8 @@ class ToDoItem extends Component {
         <td onClick={this.handleClick}>
           <i className={statusIcon(this.state.done)} />
         </td>
-        <td>{task.task}</td>
-        <td className={task.priority}>{task.priority.toUpperCase()}</td>
+        <td>{item.task}</td>
+        <td className={item.priority}>{item.priority.toUpperCase()}</td>
       </tr>
     );
   }

@@ -4,7 +4,7 @@ import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "./App.css";
 
 // Data
-import tasks from "./data";
+import items from "./data";
 
 //Components
 import ToDoList from "./ToDoList";
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="rectangle">
       <p className="title">TO DO LIST</p>
-      <ToDoList tasks={tasks} />
+      <ToDoList items={items} />
     </div>
   );
 }

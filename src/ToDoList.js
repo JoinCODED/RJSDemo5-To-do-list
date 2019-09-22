@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-
-import "./App.css";
+import React from "react";
 
 // Components
 import ToDoItem from "./ToDoItem";
 
 function ToDoList(props) {
-  const taskRows = props.tasks.map(task => (
-    <ToDoItem task={task} key={task.task} />
+  const itemRows = props.items.map(item => (
+    <ToDoItem item={item} key={item.task} />
   ));
 
   return (
@@ -19,7 +17,7 @@ function ToDoList(props) {
           <th>PRIORITY</th>
         </tr>
       </thead>
-      <tbody>{taskRows}</tbody>
+      <tbody>{itemRows}</tbody>
     </table>
   );
 }
