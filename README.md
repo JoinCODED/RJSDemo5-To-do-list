@@ -2,117 +2,119 @@ PRESENTATION: https://docs.google.com/presentation/d/1Kua0l4sS-RWstAyp7YMNYUg49G
 
 BACKEND: https://github.com/JoinCODED/RJSDemo4-To-do-list-BackEnd
 
-1. install axios and import it
+1. Run the backend - show it working with postman
 
-```bash
-yarn add axios
-```
+2. install axios and import it
 
-```javascript
-import axios from "axios";
-```
+   ```bash
+   yarn add axios
+   ```
 
-2. Create and use your state
+   ```javascript
+   import axios from "axios";
+   ```
 
-```javascript
-state = {
-  tasksFromAPI: []
-}
-...
-render() {
-  ...
-  <ToDoList tasks={this.state.tasksFromAPI} />
-  ...
-}
-```
+3. Create and use your state
 
-3. In `render()` add call axios. Return Promise:
+   ```jsx
+   state = {
+     tasksFromAPI: []
+   }
+   ...
+   render() {
+     ...
+     <ToDoList tasks={this.state.tasksFromAPI} />
+     ...
+   }
+   ```
 
-```javascript
-let asynCall = axios.get("http://127.0.0.1:8000/api/list/");
-console.log("Axios returned: ", asynCall);
-```
+4. In `render()` add call axios. Return Promise:
 
-4. Demo `async/await` and log the response object THEN log `res.data`:
+   ```jsx
+   let asynCall = axios.get("http://127.0.0.1:8000/api/list/");
+   console.log("Axios returned: ", asynCall);
+   ```
 
-```javascript
-async render() {
-  ...
-  const response = await axios.get("http://127.0.0.1:8000/api/list/")
-  console.log(response);
-  ...
-}
-```
+5. Demo `async/await` and log the response object THEN log `res.data`:
 
-to
+   ```jsx
+   async render() {
+     ...
+     const response = await axios.get("http://127.0.0.1:8000/api/list/")
+     console.log(response);
+     ...
+   }
+   ```
 
-```javascript
-async render() {
-  ...
-  const response = await axios.get("http://127.0.0.1:8000/api/list/")
-  const data = response.data
-  console.log(data);
-  ...
-}
-```
+   to
 
-to
+   ```jsx
+   async render() {
+     ...
+     const response = await axios.get("http://127.0.0.1:8000/api/list/")
+     const data = response.data
+     console.log(data);
+     ...
+   }
+   ```
 
-```javascript
-async render() {
-  ...
-  const response = await axios.get("http://127.0.0.1:8000/api/list/");
-  const tasks = response.data;
-  console.log(tasks);
-  ...
-}
-```
+   to
 
-5. Switch off the API to cause an error. Add a `try/catch`:
+   ```jsx
+   async render() {
+     ...
+     const response = await axios.get("http://127.0.0.1:8000/api/list/");
+     const tasks = response.data;
+     console.log(tasks);
+     ...
+   }
+   ```
 
-```javascript
-async render() {
-  ...
-  try {
-    const response = await axios.get("http://127.0.0.1:8000/api/list/");
-    const tasks = response.data;
-    this.setState({ tasksFromAPI: tasks });
-  } catch(error) {
-    console.error("SOMETHING WENT WRONG!");
-    console.error(error);
-  }
-  ...
-}
-```
+6. Switch off the API to cause an error. Add a `try/catch`:
 
-6. Add `setState`. Show this breaking the app!
+   ```jsx
+   async render() {
+     ...
+     try {
+       const response = await axios.get("http://127.0.0.1:8000/api/list/");
+       const tasks = response.data;
+       this.setState({ tasksFromAPI: tasks });
+     } catch(error) {
+       console.error("SOMETHING WENT WRONG!");
+       console.error(error);
+     }
+     ...
+   }
+   ```
 
-```javascript
-async render() {
-  ...
-  try {
-    const response = await axios.get("http://127.0.0.1:8000/api/list/");
-    const tasks = response.data;
-    this.setState({ tasksFromAPI: tasks });
-  } catch(error) {
-    console.error("SOMETHING WENT WRONG!");
-    console.error(error);
-  }
-  ...
-}
-```
+7. Add `setState`. Show this breaking the app!
 
-7. Add `componentDidMount()`:
+   ```jsx
+   async render() {
+     ...
+     try {
+       const response = await axios.get("http://127.0.0.1:8000/api/list/");
+       const tasks = response.data;
+       this.setState({ tasksFromAPI: tasks });
+     } catch(error) {
+       console.error("SOMETHING WENT WRONG!");
+       console.error(error);
+     }
+     ...
+   }
+   ```
 
-```javascript
-async componentDidMount() {
-    try {
-      const response = await axios.get("http://127.0.0.1:8000/api/list/");
-      const tasks = response.data;
-      this.setState({ tasksFromAPI: tasks });
-    } catch (err) {
-      console.error("SOMETHING WENT WRONG: ");
-      console.error(err);
-    }
-}
-```
+8. Add `componentDidMount()`:
+
+   ```jsx
+   async componentDidMount() {
+       try {
+         const response = await axios.get("http://127.0.0.1:8000/api/list/");
+         const tasks = response.data;
+         this.setState({ tasksFromAPI: tasks });
+       } catch (err) {
+         console.error("SOMETHING WENT WRONG: ");
+         console.error(err);
+       }
+   }
+   ```
