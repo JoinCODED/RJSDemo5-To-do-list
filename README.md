@@ -78,7 +78,7 @@ BACKEND: https://github.com/JoinCODED/RJSDemo4-To-do-list-BackEnd
      try {
        const response = await axios.get("http://127.0.0.1:8000/api/list/");
        const tasks = response.data;
-       this.setState({ tasksFromAPI: tasks });
+       console.log(tasks);
      } catch(error) {
        console.error("SOMETHING WENT WRONG!");
        console.error(error);
